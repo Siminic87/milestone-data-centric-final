@@ -1,0 +1,25 @@
+/*HTML*/
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+  
+  p {
+    margin-bottom: 5px;
+  }
+  
+/*-----HTML-----*/
+
+/*Navbar*/
+
+.logo-margin {
+  margin-left: 10px;
+}
+
+/*-----Navbar-----*/
