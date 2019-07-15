@@ -18,6 +18,35 @@ mongo = PyMongo(app)
 
 mod = Blueprint('tips', __name__)
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = ''
+app.config['SECRET_KEY'] = os.urandom(24)
+
+### User Registration ###
+@login_manager.user_loader
+# Loads user
+def load_user(user_id):
+    return User(user_id)
+
+class User(UserMixin):
+# Assigns user ID
+  def __init__(self,id):
+    self.id = id
+
+@app.route('/login/')
+# Login functionality
+def login():
+    login_user(User(1))
+    return redirect(url_for('all_categories'))
+
+@app.route('/logout/')
+@login_required
+# Logout functioniality
+def logout():
+    logout_user()
+    return redirect(url_for('all_categories'))
+
 ### Overview + Detail Page ###
 
 @app.route('/')
