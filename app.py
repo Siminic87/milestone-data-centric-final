@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 
 from pymongo import MongoClient
 from flask_paginate import Pagination, get_page_parameter, get_page_args
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 
 app = Flask(__name__)
 
@@ -135,6 +136,30 @@ def downvote_category(category, tip_id):
         {'_id': ObjectId(tip_id)},
         {'$inc': {'upvotes': int(-1)}})
     return redirect(url_for('sort_by_category', category=category))
+    
+### Adding, editing & deleting TIPS ###
+
+@app.route('/add_tip')
+# Renders page with form for adding new tip
+@login_required
+def add_tip():
+    return render_template("addtip.html",
+    categories=mongo.db.categories.find())
+    
+@app.route('/insert_tip', methods=['POST'])
+# Inserts new tip in database based on entries in form
+# Upvotes count set to 0
+def insert_tip():
+    tips = mongo.db.tips
+    tips.insert_one(
+        {
+            'tip_name': request.form.get('tip_name'), 
+            'category_name': request.form.get('category_name'), 
+            'tip_description': request.form.get('tip_description'), 
+            'date': request.form.get('date'), 
+            'upvotes': 0
+        })
+    return redirect(url_for('all_categories'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
