@@ -13,6 +13,8 @@ from bson import json_util
 from bson.json_util import dumps
 
 app = Flask(__name__)
+app.config["MONGO_DBNAME"] = 'user_tips'
+app.config["MONGO_URI"] = 'mongodb://admin:g00gle@ds121636.mlab.com:21636/user_tips'
 
 mongo = PyMongo(app)
 

@@ -23,3 +23,37 @@
 }
 
 /*-----Navbar-----*/
+
+/*Buttons*/
+
+.btn_small {
+    height: 24px;
+    width: 60px;
+    line-height: 24px;
+    margin: 5px 5px;
+    padding: 0 0.5em;
+}
+
+.btn-fix {
+    margin-top: 43px;
+    position: fixed;
+}
+
+.btn-margin {
+    margin-bottom: 5px;
+}
+
+/*-----Buttons-----*/
+
+/*Charts*/
+
+#tips-date .x.axis text, #upvotes-tip .x.axis text {
+    text-anchor: end !important;
+    transform: rotate(-45deg);
+}
+
+#upvotes-tip > svg:nth-child(2), #tips-date > svg:nth-child(2) {
+    height: 320px;
+}
+
+/*-----Charts-----*/
