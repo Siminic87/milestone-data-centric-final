@@ -160,6 +160,29 @@ def insert_tip():
             'upvotes': 0
         })
     return redirect(url_for('all_categories'))
+    
+@app.route('/edit_tip/<tip_id>')
+# Renders tips with pre-populated form for editing tip
+def edit_tip(tip_id):
+    the_tip = mongo.db.tips.find_one({"_id": ObjectId(tip_id)})
+    all_categories = mongo.db.categories.find()
+    return render_template('edittip.html', tip=the_tip, categories=all_categories)
+    
+@app.route('/update_tip/<tip_id>', methods=["POST"])
+# Inserts updated tip into database based on form entries
+# Upvote count maintained from before
+def update_tip(tip_id):
+    tips = mongo.db.tips
+    upvotes = mongo.db.tips.find_one({'_id': ObjectId(tip_id)}, {"upvotes": True, "_id": False})
+    tips.update( {'_id': ObjectId(tip_id)},
+    {
+        'tip_name':request.form.get('tip_name'),
+        'category_name':request.form.get('category_name'),
+        'tip_description': request.form.get('tip_description'),
+        'date': request.form.get('date'),
+        'upvotes': upvotes["upvotes"],
+    })
+    return redirect(url_for('all_categories'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
