@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, Blueprint
+from flask import Flask, request, render_template, Blueprint, redirect, url_for
 from flask_pymongo import PyMongo
 import datetime
 from datetime import date, timedelta
@@ -82,6 +82,33 @@ def tip_detail(tip_id):
     all=1,
     new=mongo.db.tips.find({"date": str(datetime.date.today().strftime('%d %B, %Y'))}).count(),
     tip=the_tip)
+    
+### Upvoting ###
+
+@app.route('/upvote/<tip_id>', methods=['GET'])
+# Allows users to upvote tips on the summary page
+def upvote(tip_id):
+    mongo.db.tips.find_one_and_update(
+            {'_id': ObjectId(tip_id)},
+            {'$inc': {'upvotes': int(1)}}
+            )
+    return redirect(url_for('all_categories'))
+    
+@app.route('/upvote-detail/<tip_id>', methods=['GET'])
+# Allows users to upvote tips on the detail page
+def upvote_detail(tip_id):
+    mongo.db.tips.find_one_and_update(
+        {'_id': ObjectId(tip_id)},
+        {'$inc': {'upvotes': int(1)}})
+    return redirect(url_for('tip_detail', tip_id=tip_id))
+
+@app.route('/upvote/<category>/<tip_id>', methods=['GET'])
+# Allows users to upvote tips on the filtered summary page
+def upvote_category(category, tip_id):
+    mongo.db.tips.find_one_and_update(
+        {'_id': ObjectId(tip_id)},
+        {'$inc': {'upvotes': int(1)}})
+    return redirect(url_for('sort_by_category', category=category))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
