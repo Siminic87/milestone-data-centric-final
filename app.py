@@ -197,6 +197,19 @@ def delete_tip(tip_id):
 def get_categories():
     return render_template('categories.html',
     categories=mongo.db.categories.find())
+    
+@app.route('/new_category')
+# Renders page with empty form for creating new category
+def new_category():
+    return render_template('addcategory.html')
+    
+@app.route('/insert_category', methods=['POST'])
+# Inserts new category into databse based on form entries
+def insert_category():
+    categories = mongo.db.categories
+    category_doc = {'category_name': request.form['category_name']}
+    categories.insert_one(category_doc)
+    return redirect(url_for('get_categories'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
