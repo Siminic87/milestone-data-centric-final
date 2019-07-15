@@ -1,0 +1,70 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+
+<div class="row">
+    <div class="col s12 l6">
+        <div>
+            <p>Categories:</p>
+            
+            <!-- Filtering Buttons -->
+            <a href="{{url_for('all_categories')}}" class="waves-effect waves-light btn grey lighten-1 black-text btn-margin">All</a>
+            {% for cat in categories %}
+            <form action="{{url_for('sort_by_category', category=cat.category_name)}}" style="display: inline;" method="POST">
+                <input type="submit" class="waves-effect waves-light btn grey lighten-1 black-text btn-margin" name="category" value="{{cat.category_name}}" />
+            </form>
+            {% endfor %}
+            <!-- /.Filtering Buttons -->
+            
+        </div>
+        
+        <!-- Summary Stats -->
+        <p><b>{{category}}</b>: Total: {{ all }}, New: {{ new }}</p>
+        <!-- /.Summary Stats -->
+        
+        {{ pagination.links }}
+        
+        <!-- Tip Cards -->
+        {% for tip in tips %} 
+        {% if category == tip.category_name %}
+        <div class="card white darken-1">
+            <div class="card-content black-text">
+                <span class="card-title orange-text darken-1"><b>{{tip.tip_name}}</b></span>
+                <div>
+                    <p><i>Category: <u>{{tip.category_name}}</u>, Date: <u>{{tip.date}}</u></i></p>
+                    <br>
+                    <p>"{{tip.tip_description}}."</p>
+                    <br>
+                    <a href="{{url_for('tip_detail', tip_id=tip._id)}}" class="btn orange darken-1">Read more...</a>
+                    <br>
+                </div>
+            </div>
+            <div class="card-action grey lighten-4">
+                {% if current_user.is_authenticated %}
+                <a href="{{url_for('upvote_category', category=category, tip_id=tip._id)}}" class="waves-effect waves-light btn btn_small grey lighten-1 black-text">+</a>
+                <a href="{{url_for('downvote_category', category=category, tip_id=tip._id)}}" class="waves-effect waves-light btn btn_small grey lighten-1 black-text">-</a>
+                {% endif %}
+                <span>Up: {{tip.upvotes}}</span>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <!-- /.Tip Cards -->
+        
+        {{ pagination.links }}
+        
+    </div>
+    
+    {% if current_user.is_authenticated %}
+    <div class="col s12 l6">
+        <form>
+            <button class="btn waves-effect waves-light btn-fix" formaction="{{url_for('add_tip')}}" type="submit" name="action">+Add Tip!
+                    <i class="material-icons right">playlist_add</i>
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

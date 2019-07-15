@@ -47,7 +47,32 @@ def all_categories():
                            all=mongo.db.tips.count(),
                            datenew=datenew,
                            new=mongo.db.tips.find({"date": datenew}).count())
-
+        
+@app.route('/<category>', methods=['POST','GET'])
+# Renders page filtered by category incl. pagination
+def sort_by_category(category):
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    
+    page = int(request.args.get('page', 1))
+    per_page = 5
+    offset = (page - 1) * per_page
+    
+    tips=mongo.db.tips.find({"category_name" : category}).sort("upvotes", -1).limit(per_page).skip(offset)
+    categories=mongo.db.categories.find()
+    pagination = Pagination(page=page, per_page=per_page, offset=offset, total=mongo.db.tips.find({"category_name" : category}).count(), search=search, record_name='tips')
+    
+    return render_template("category.html",
+    tips=tips,
+    pagination=pagination,
+    categories=categories,
+    category=category,
+    all=mongo.db.tips.find({"category_name" : category}).count(),
+    new=mongo.db.tips.find({"category_name" : category,
+                            "date": str(datetime.date.today().strftime('%d %B, %Y'))}).count())
+    
 @app.route('/detail/<tip_id>', methods=['GET'])
 # Renders page for single tip
 def tip_detail(tip_id):
