@@ -1,0 +1,33 @@
+{% extends 'base.html'%} 
+
+{% block scripts %}
+<script type="text/javascript" src="static/js/d3.min.js"></script>
+<script type="text/javascript" src="static/js/crossfilter.min.js"></script>
+<script type="text/javascript" src="static/js/dc.min.js"></script>
+<script type="text/javascript" src="static/js/queue.min.js"></script>
+<script type="text/javascript" src="static/js/graph.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <h3>Summary:</h3>
+</div>
+
+<section class="section">
+    <!-- Graphs -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center" id="tips-category" class="custom-chart">
+            <h4>Tips / Category</h>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center" id="upvotes-tip" class="custom-chart">
+            <h4>Upvotes / Tip</h>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center" id="tips-date" class="custom-chart">
+            <h4>Tips / Date</h>
+        </div>
+    </div>
+    <!-- /.Form -->
+</section>
+
+{% endblock %}
