@@ -210,6 +210,20 @@ def insert_category():
     category_doc = {'category_name': request.form['category_name']}
     categories.insert_one(category_doc)
     return redirect(url_for('get_categories'))
+    
+@app.route('/edit_category/<category_id>')
+# Renders page with pre-populated form for editing chosen category
+def edit_category(category_id):
+    return render_template('editcategory.html',
+    category=mongo.db.categories.find_one({'_id': ObjectId(category_id)}))
+    
+@app.route('/update_category/<category_id>', methods=['POST'])
+# Inserts updated category into databse based on form entries
+def update_category(category_id):
+    mongo.db.categories.update(
+        {'_id': ObjectId(category_id)},
+        {'category_name': request.form['category_name']})
+    return redirect(url_for('get_categories'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
