@@ -109,6 +109,32 @@ def upvote_category(category, tip_id):
         {'_id': ObjectId(tip_id)},
         {'$inc': {'upvotes': int(1)}})
     return redirect(url_for('sort_by_category', category=category))
+    
+### Downvoting ###
+
+@app.route('/downvote/<tip_id>', methods=['GET'])
+# Allows users to downvote tips on the summary page
+def downvote(tip_id):
+    mongo.db.tips.find_one_and_update(
+        {'_id': ObjectId(tip_id)},
+        {'$inc': {'upvotes': int(-1)}})
+    return redirect(url_for('all_categories'))
+    
+@app.route('/downvote-detail/<tip_id>', methods=['GET'])
+# Allows users to downvote tips on the detail page
+def downvote_detail(tip_id):
+    mongo.db.tips.find_one_and_update(
+        {'_id': ObjectId(tip_id)},
+        {'$inc': {'upvotes': int(-1)}})
+    return redirect(url_for('tip_detail', tip_id=tip_id))
+
+@app.route('/downvote/<category>/<tip_id>', methods=['GET'])
+# Allows users to downvote tips on the filtered summary page
+def downvote_category(category, tip_id):
+    mongo.db.tips.find_one_and_update(
+        {'_id': ObjectId(tip_id)},
+        {'$inc': {'upvotes': int(-1)}})
+    return redirect(url_for('sort_by_category', category=category))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
