@@ -8,6 +8,9 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 from flask_paginate import Pagination, get_page_parameter, get_page_args
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
+import json
+from bson import json_util
+from bson.json_util import dumps
 
 app = Flask(__name__)
 
@@ -230,6 +233,22 @@ def update_category(category_id):
 def delete_category(category_id):
     mongo.db.categories.remove({'_id': ObjectId(category_id)})
     return redirect(url_for('get_categories'))
+    
+### Summary Charts ###
+@app.route("/user_tips/tips")
+# Renders page with all data in database in json format
+def user_tips_tips():
+    tips = mongo.db.tips.find()
+    json_tips = []
+    for tip in tips:
+        json_tips.append(tip)
+    json_tips = json.dumps(json_tips, default=json_util.default)
+    return json_tips
+
+@app.route("/summary")
+# Renders page with summary charts
+def summary():
+    return render_template('summary.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
