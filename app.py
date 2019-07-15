@@ -183,6 +183,12 @@ def update_tip(tip_id):
         'upvotes': upvotes["upvotes"],
     })
     return redirect(url_for('all_categories'))
+    
+@app.route('/delete_tip/<tip_id>')
+# Deletes chosen tip from database
+def delete_tip(tip_id):
+    mongo.db.tips.remove({'_id': ObjectId(tip_id)})
+    return redirect(url_for('all_categories'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
