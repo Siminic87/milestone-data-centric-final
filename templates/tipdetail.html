@@ -1,0 +1,53 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+
+<div class="row">
+    <div class="col s12 l6">
+        <div>
+            <p>Categories:</p>
+            <!-- Filtering Buttons -->
+            <a href="{{url_for('all_categories')}}" class="waves-effect waves-light btn grey lighten-1 black-text">All</a>
+            <!-- /.Filtering Buttons -->
+        </div>
+        
+        <!-- Summary Stats -->
+        <p>Total: {{ all }}, New: {{ new }}</p>
+        <!-- /.Summary Stats -->
+        
+        <!-- Tip Card -->
+        <div class="card white darken-1">
+            <div class="card-content black-text">
+                <span class="card-title orange-text darken-1"><b>{{tip.tip_name}}</b></span>
+                <div>
+                    <p><i>Category: <u>{{tip.category_name}}</u>, Date: <u>{{tip.date}}</u></i></p>
+                    <br>
+                    <p>"{{tip.tip_description}}"</p>
+                    <br>
+                    <a href="{{url_for('edit_tip', tip_id=tip._id)}}" class="waves-effect waves-light btn btn_small">Edit</a>
+                    <a href="{{url_for('delete_tip', tip_id=tip._id)}}" class="waves-effect waves-light btn btn_small red lighten-3" onclick="return confirm('Are you sure?')">Del</a>
+                    <br>
+                </div>
+            </div>
+            <div class="card-action grey lighten-4">
+                <a href="{{url_for('upvote_detail', tip_id=tip._id)}}" class="waves-effect waves-light btn btn_small grey lighten-1 black-text">+</a>
+                <a href="{{url_for('downvote_detail', tip_id=tip._id)}}" class="waves-effect waves-light btn btn_small grey lighten-1 black-text">-</a>
+                <span>Up: {{tip.upvotes}}</span>
+            </div>
+        </div>
+        <!-- /.Tip Card -->
+    </div>
+
+    {% if current_user.is_authenticated %}
+    <div class="col s12 l6">
+        <form>
+            <button class="btn waves-effect waves-light btn-fix" formaction="{{url_for('add_tip')}}" type="submit" name="action">+Add Tip!
+                    <i class="material-icons right">playlist_add</i>
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

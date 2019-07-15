@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, Blueprint
 from flask_pymongo import PyMongo
 import datetime
 from datetime import date, timedelta
+from bson.objectid import ObjectId
 
 from pymongo import MongoClient
 from flask_paginate import Pagination, get_page_parameter, get_page_args
@@ -46,6 +47,16 @@ def all_categories():
                            all=mongo.db.tips.count(),
                            datenew=datenew,
                            new=mongo.db.tips.find({"date": datenew}).count())
+
+@app.route('/detail/<tip_id>', methods=['GET'])
+# Renders page for single tip
+def tip_detail(tip_id):
+    the_tip = mongo.db.tips.find_one({"_id": ObjectId(tip_id)})
+    
+    return render_template("tipdetail.html",
+    all=1,
+    new=mongo.db.tips.find({"date": str(datetime.date.today().strftime('%d %B, %Y'))}).count(),
+    tip=the_tip)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
