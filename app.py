@@ -189,6 +189,14 @@ def update_tip(tip_id):
 def delete_tip(tip_id):
     mongo.db.tips.remove({'_id': ObjectId(tip_id)})
     return redirect(url_for('all_categories'))
+    
+### Adding, editing & deleting CATEGORIES ###
+
+@app.route('/get_categories')
+# Renders page with overview of all categories
+def get_categories():
+    return render_template('categories.html',
+    categories=mongo.db.categories.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
