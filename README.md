@@ -15,11 +15,11 @@ The SEO User Exchange is the best way to get tips on online marketing from peers
 - As a user type, I want to be able to assess and vote on the usefulness of the tips presented. 
 - As a user type I want to be able to post, edit and delete online marketing tips that have worked for me. This includes adding, editing and deleting the relevant category of my tip. 
 
-Mockup:
-### Desktop
+### Mockups:
+#### Desktop
 ![SEO User-Exchange Mockup - Desktop](/static/img/SEO-User-Exchange-Desktop.jpg)
 
-### Tablet / Mobile
+#### Tablet / Mobile
 ![SEO User-Exchange Mockup - Tablet/Mobile](/static/img/SEO-User-Exchange-Tablet-Mobile.jpg)
 
 ## Features
@@ -107,8 +107,8 @@ This site is hosted using Heroku: Cloud Application Platform.
 
 Heroku Config Vars were set to:
 
-IP: 0.0.0.0
-PORT: 5000
+- IP: 0.0.0.0
+- PORT: 5000
 
 The live site updates automatically each time there is a new push to its [GitHub repository](https://github.com/Siminic87/milestone-data-centric-final). You can git clone the code to run it locally on your machine.
 
