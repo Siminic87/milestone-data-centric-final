@@ -6,7 +6,7 @@
 <div class="row">
     
     <!-- Form -->
-    <form action="{{ url_for('insert_tip') }}" method="POST" class="col s12">
+    <form name="form1" action="{{ url_for('insert_tip') }}" method="POST" class="col s12">
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">poll</i>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light" type="submit">Add Tip
+            <button class="btn waves-effect waves-light" type="submit" onClick="return required()">Add Tip
                 <i class="material-icons right">playlist_add</i>
             </button>
         </div>
@@ -73,6 +73,23 @@
         close: 'Ok',
         closeOnSelect: true, // Close upon selecting a date,
     });
+    
+    function required()
+    {
+    var empt = document.form1.category_name.value;
+    var empt1 = document.form1.tip_name.value;
+    var empt2 = document.form1.tip_description.value;
+    var empt3 = document.form1.date.value;
+    if (empt === "" | empt1 === "" | empt2 === "" | empt3 === "")
+    {
+    alert("Missing Value!");
+    return false;
+    }
+    else
+    {
+    return true;
+    }
+    }
 </script>
 <!-- /.Form Scripts -->
 
