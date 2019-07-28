@@ -108,7 +108,7 @@ Major bug noticed when category buttons would not filter results at all and only
 ## Deployment
 This app is hosted using Heroku: Cloud Application Platform.
 
-To deploy the app from an AWS cloud9 environment, initialize git repository via "git init" command in terminal window. Once all changes have been tracked via "git add" and "git commit -m 'INSERT YOUR COMMIT DESCRIPTION HERE'", upload to a desired github repository that you have created for this purpose via "git remote add origin https://github.com/YOURUSERNAME/YOURREPONAME" and "git push -u origin master" commands. Then log in to heroku (heroku.com) and create new app by clicking on "new" button in top right corner. Once app is created, click on app and go to "Deploy" section. Click on "GitHub" and search for the corresponding GitHub repository that you have created for this purpose. 
+To deploy the app from an AWS cloud9 environment, initialize git repository via "git init" command in terminal window. Once all changes have been tracked via "git add" and "git commit -m 'INSERT YOUR COMMIT DESCRIPTION HERE'", upload to a desired github repository that you have created for this purpose via "git remote add origin https://github.com/YOURUSERNAME/YOURREPONAME" and "git push -u origin master" commands. Then log in to heroku (heroku.com) and create new app by clicking on "new" button in top right corner. Once app is created, click on app and go to "Deploy" section. Click on "GitHub" and search for the corresponding GitHub repository that you have created for this purpose and make sure that you click the button "Enable Automatic Deploys" below. 
 
 Then got to settings and select "Reveal Config Vars" in order to set Config Vars to:
 
