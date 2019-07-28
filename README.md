@@ -11,9 +11,12 @@ The page is for any individual or company worldwide who would like to get tips o
 
 The SEO User Exchange is the best way to get tips on online marketing from peers because it gives a quick and comprehensive summary of various online marketing tips that have been applied by people in real life. Since it also incorporates a voting system, it also lets users quickly assess the usefulness of each individual tip as perceived by other users. 
 
-- As a user type, I want to get a quick overview of online marketing tips from peers that could work for my business. 
-- As a user type, I want to be able to assess and vote on the usefulness of the tips presented. 
-- As a user type I want to be able to post, edit and delete online marketing tips that have worked for me. This includes adding, editing and deleting the relevant category of my tip. 
+- As a user type, I want to get a quick overview of bugs and feature requests that have already been posted by users of MarketingMan.ie. 
+- As a user type, I want to be able to assess and vote on the urgency with which bugs and feature requests are developed.
+- As a user type I want to be able to post, edit and delete bugs and feature requests that I would like to have tended to. 
+
+
+
 
 ### Mockups:
 #### Desktop
@@ -103,14 +106,16 @@ Manual testing revealed that adding, editing and deleting tips/categories was in
 Major bug noticed when category buttons would not filter results at all and only render main summary page. Bug fixed by passing category correctly to template. Abother bug has appeared on Google Chrome browsers where the datepicker calendar closes before a date can be chosen on form pages. Resolution outstanding.
 
 ## Deployment
-This site is hosted using Heroku: Cloud Application Platform.
+This app is hosted using Heroku: Cloud Application Platform.
 
-Heroku Config Vars were set to:
+To deploy the app from an AWS cloud9 environment, initialize git repository via "git init" command in terminal window. Once all changes have been tracked via "git add" and "git commit -m 'INSERT YOUR COMMIT DESCRIPTION HERE'", upload to a desired github repository that you have created for this purpose via "git remote add origin https://github.com/YOURUSERNAME/YOURREPONAME" and "git push -u origin master" commands. Then log in to heroku (heroku.com) and create new app by clicking on "new" button in top right corner. Once app is created, click on app and go to "Deploy" section. Click on "GitHub" and search for the corresponding GitHub repository that you have created for this purpose. 
+
+Then got to settings and select "Reveal Config Vars" in order to set Config Vars to:
 
 - IP: 0.0.0.0
 - PORT: 5000
 
-The live site updates automatically each time there is a new push to its [GitHub repository](https://github.com/Siminic87/milestone-data-centric-final). You can git clone the code to run it locally on your machine.
+Having put this in place, the live site updates automatically each time there is a new push to its [GitHub repository](https://github.com/Siminic87/milestone-data-centric-final). You can git clone the code to run it locally on your machine.
 
 ## Credits
 ### Filtering Categories

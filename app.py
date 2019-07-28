@@ -1,4 +1,6 @@
 import os
+import env
+
 from flask import Flask, request, render_template, Blueprint, redirect, url_for
 from flask_pymongo import PyMongo
 import datetime
@@ -14,7 +16,7 @@ from bson.json_util import dumps
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'user_tips'
-app.config["MONGO_URI"] = 'mongodb://admin:g00gle@ds121636.mlab.com:21636/user_tips'
+app.config["MONGO_URI"] = os.getenv('DATABASE_URL')
 
 mongo = PyMongo(app)
 
@@ -23,7 +25,7 @@ mod = Blueprint('tips', __name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = ''
-app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 ### User Registration ###
 @login_manager.user_loader
