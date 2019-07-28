@@ -1,15 +1,15 @@
-# SEO User Exchange – Tips Database
-The “SEO User Exchange” is an online tool with which owners of small and medium sized businesses can exchange tips and best-practices from their own online marketing efforts in order help each other. All data connected to the tips is stored on an external database that can be accessed and manipulated by users via the frontend. 
+# Online Marketing User Exchange – Tips Database
+The “OM User Exchange” is an online tool with which owners of small and medium sized businesses can exchange tips and best-practices from their own online marketing efforts in order help each other. All data connected to the tips is stored on an external database that can be accessed and manipulated by users via the frontend. 
 
 ## Demo
 A live demo can be found at [Heroku: Cloud Application Platform](https://milestone-data-centric.herokuapp.com/)
 
 ## UX
-The purpose of the SEO User Exchange is to allow users to exchange tips about what has worked for them in terms of their online marketing. Users can then give each other feedback regarding the usefulness of the tips that are posted via a voting system (up/down). 
+The purpose of the OM User Exchange is to allow users to exchange tips about what has worked for them in terms of their online marketing. Users can then give each other feedback regarding the usefulness of the tips that are posted via a voting system (up/down). 
 
 The page is for any individual or company worldwide who would like to get tips on good online marketing practices from their peers.  
 
-The SEO User Exchange is the best way to get tips on online marketing from peers because it gives a quick and comprehensive summary of various online marketing tips that have been applied by people in real life. Since it also incorporates a voting system, it also lets users quickly assess the usefulness of each individual tip as perceived by other users. 
+The OM User Exchange is the best way to get tips on online marketing from peers because it gives a quick and comprehensive summary of various online marketing tips that have been applied by people in real life. Since it also incorporates a voting system, it also lets users quickly assess the usefulness of each individual tip as perceived by other users. 
 
 - As a user type, I want to get a quick overview of bugs and feature requests that have already been posted by users of MarketingMan.ie. 
 - As a user type, I want to be able to assess and vote on the urgency with which bugs and feature requests are developed.
@@ -20,13 +20,13 @@ The SEO User Exchange is the best way to get tips on online marketing from peers
 
 ### Mockups:
 #### Desktop
-![SEO User-Exchange Mockup - Desktop](/static/img/SEO-User-Exchange-Desktop.jpg)
+![OM User-Exchange Mockup - Desktop](/static/img/OM-User-Exchange-Desktop.jpg)
 
 #### Tablet / Mobile
-![SEO User-Exchange Mockup - Tablet/Mobile](/static/img/SEO-User-Exchange-Tablet-Mobile.jpg)
+![OM User-Exchange Mockup - Tablet/Mobile](/static/img/OM-User-Exchange-Tablet-Mobile.jpg)
 
 ## Features
-SEO User Exchange has various features that intend to allow users to get a quick overview of various online marketing tips that have worked for other people and to assess their validity via the social component. It also facilitates the posting, editing and deleting of tips. 
+OM User Exchange has various features that intend to allow users to get a quick overview of various online marketing tips that have worked for other people and to assess their validity via the social component. It also facilitates the posting, editing and deleting of tips. 
 
 ### Existing Features
 - List of database entries – All tips are summarized on a list individual cards. Information contained on the cards is tip title, tip description, tip category, number of up/downvotes, date of publishing and edit and delete functionality via links. Results are ordered by number of upvotes in descending order.
@@ -69,7 +69,7 @@ All features fully responsive on mobile devices (incl. tablets and smartphones).
 
 ## Testing
 1.  Quick overview of all posted Online Marketing tips / summary statistics
-    1. Go to SEO User Exchange homepage
+    1. Go to OM User Exchange homepage
     2. Verify that summary statistics “total” and “new” display above tip card results and that “total” displays the total number of all results and “new” displays the number of results that were posted on the day of viewing the page.
     3. Verify that tips are ordered in descending order according to number of upvotes and that only 5 results are shown per page and that the remaining results can be accessed via the pagination links.
     4. Try to click on category links above results and verify that depending on selected category, only results for this category are displayed and that the summary statistics above the results change accordingly.
@@ -78,7 +78,7 @@ All features fully responsive on mobile devices (incl. tablets and smartphones).
 Manual testing revealed that the “tips overview” and “summary pages” were integrated and visualised seamlessly. The pages are accessible on all devices and all major browsers and look virtually the same on different browsers.
 
 2.	Assessing and voting on usefulness of tips
-    1. Go to SEO User Exchange homepage
+    1. Go to OM User Exchange homepage
     2. Try scrolling down results and verify that individual tip cards show number of received upvotes (See “Up:”).
     3. OR try to click on “Login” in main navigation and verify that individual tip cards now have an up- and downvote button.
     4. Try to click on either the up- or downvote button and verify that total number of upvotes of the chosen tip goes up or down accordingly.
@@ -88,7 +88,7 @@ Manual testing revealed that the “tips overview” and “summary pages” wer
 Manual testing revealed that assessing and voting on tips was integrated and visualised seamlessly. The functionality is accessible on all devices and all major browsers and looks virtually the same on different browsers. 
 
 3.	Posting, editing and deleting tips (incl. tip categories)
-    1. Go to SEO User Exchange homepage
+    1. Go to OM User Exchange homepage
     2. Try to click on “login” in top navigation, click “Add Tip!” button on the right of results OR ”New Tip” link in main navigation and verify that form for posting new tip loads correctly and includes fields for “category”, “name, “description” and publishing date.
     3. Try to choose tip category, enter tip name, tip description, select date of publishing, click “ADD TIP” below form and verify that user is redirected to unfiltered results page and that the new tip is included in results.
     4. OR try to click on “login” in main navigation, click on the “Read More” button on an individual tip card (either on filtered or non-filtered results page), click “EDIT” button and verify that tip form fields get populated correctly with data from chosen tip.
